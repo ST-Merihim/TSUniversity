@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <title>Практична №2 — TS інтерактивність v4</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-row">
+        <div class="brand">UniSchedule</div>
+        <nav class="nav">
+            <a href="#hero">Головна</a>
+            <a href="#features">Можливості</a>
+            <a href="#tasks">Завдання</a>
+        </nav>
+        <button class="btn btn-primary js-open-modal">
+            Забронювати консультацію
+        </button>
+    </div>
+</header>
+
+<main>
+    <section id="hero" class="hero">
+        <div class="container hero-grid">
+            <div>
+                <h1>Легка сторінка на TypeScript</h1>
+                <p>
+                    Модальне вікно, індикатор активного розділу, акуордеон FAQ
+                    та список завдань, що завантажується з API.
+                </p>
+                <button class="btn btn-outline js-open-modal">
+                    Записатися на консультацію
+                </button>
+            </div>
+            <div class="hero-card">
+                <h2>Статус сесії</h2>
+                <p>0 запланованих консультацій</p>
+                <p class="hero-note">
+                    Дані у цьому блоці статичні та потрібні лише для прикладу.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Можливості сторінки</h2>
+            <div class="chips">
+                <span class="chip js-section-chip" data-section="hero">Hero</span>
+                <span class="chip js-section-chip" data-section="features">Можливості</span>
+                <span class="chip js-section-chip" data-section="tasks">Завдання</span>
+            </div>
+
+            <div class="faq">
+                <div class="faq-item">
+                    <button class="faq-question" data-faq>
+                        Як працює модальне вікно?
+                    </button>
+                    <div class="faq-answer">
+                        Вікно відкривається по кліку на кнопки з класом
+                        <code>js-open-modal</code> та закривається по кліку на хрестик
+                        або на світлий фон навколо.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" data-faq>
+                        Звідки беруться завдання в списку?
+                    </button>
+                    <div class="faq-answer">
+                        Список завдань завантажується з
+                        <code>jsonplaceholder.typicode.com/todos</code> за допомогою
+                        <code>fetch</code> у файлі <code>main.ts</code>.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" data-faq>
+                        Чи типізований код на сторінці?
+                    </button>
+                    <div class="faq-answer">
+                        Так, усі функції та змінні в TypeScript мають явні типи, а
+                        робота з DOM виконується через конкретні типи елементів.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tasks" class="tasks">
+        <div class="container">
+            <h2>Список завдань з API</h2>
+            <p class="tasks-note">
+                Дані завантажуються з <code>/todos</code>, при кліку на чекбокс
+                завдання відмічається як виконане тільки у візуальному вигляді.
+            </p>
+            <div class="tasks-controls">
+                <button id="loadTasks" class="btn btn-primary">
+                    Завантажити завдання
+                </button>
+                <label class="filter">
+                    <input type="checkbox" id="filterCompleted" />
+                    Показувати лише невиконані
+                </label>
+            </div>
+            <ul id="tasksList" class="tasks-list">
+                <!-- Динамічні елементи -->
+            </ul>
+        </div>
+    </section>
+</main>
+
+<!-- Модальне вікно -->
+<div id="backdrop" class="backdrop"></div>
+
+<div id="bookingModal" class="modal">
+    <div class="modal-content">
+        <button class="modal-close js-close-modal">&times;</button>
+        <h3>Бронювання консультації</h3>
+        <p>Форма демонстраційна. Дані нікуди не надсилаються.</p>
+        <label class="field">
+            <span>Ім'я</span>
+            <input type="text" />
+        </label>
+        <label class="field">
+            <span>Дата</span>
+            <input type="date" />
+        </label>
+        <button class="btn btn-primary js-close-modal">
+            Підтвердити (умовно)
+        </button>
+    </div>
+</div>
+
+<script type="module" src="./dist/main.js"></script>
+</body>
+</html>
